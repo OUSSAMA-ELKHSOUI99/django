@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "AppSectionForWebsite",  # Custom app for the website
+    "store",
+    "tags"
 ]
 
 MIDDLEWARE = [
@@ -50,7 +52,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "mywebsite.urls"
+ROOT_URLCONF = "e_commerce_website.urls"
 
 TEMPLATES = [
     {
@@ -67,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "mywebsite.wsgi.application"
+WSGI_APPLICATION = "e_commerce_website.wsgi.application"
 
 
 # Database
