@@ -2,6 +2,11 @@ from django.db import models
 
 # Create your models here.
 # 
+
+class Collection(models.Model):
+    title = models.CharField(max_length=255)
+
+
 class Product(models.Model):
     sku = models.CharField(max_length=10, primary_key=True)
     title = models.CharField(max_length=100)
@@ -9,6 +14,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     inventory = models.IntegerField()
     last_updated = models.DateTimeField(auto_now=True)
+    collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.name
@@ -45,3 +51,28 @@ class Order(models.Model):
     ]
     placed_at = models.DateTimeField(auto_now_add=True)
     payment_status = models.CharField(max_length=20, choices=PAYMENT_STATUS_CHOICES, default='P')
+
+    customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.PROTECT)
+    product = models.ForeignKey(Product, on_delete=models.PROTECT)
+    quantity = models.PositiveSmallIntegerField()
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+
+
+
+class Adress(models.Model):
+    street = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    customer = models.OneToOneField(Customer, on_delete=models.CASCADE, primary_key=True)
+
+class Cart(models.Model):
+    created_at = models.DateTimeField(auto_new_add=True)
+
+
+
+
+
