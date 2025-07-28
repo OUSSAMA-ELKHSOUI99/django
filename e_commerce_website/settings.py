@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "AppSectionForWebsite",  # Custom app for the website
     "store",
-    "tags"
+    "tags",
+    "likes",  # Custom app for likes
 ]
 
 MIDDLEWARE = [
