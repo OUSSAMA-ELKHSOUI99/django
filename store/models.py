@@ -13,8 +13,10 @@ class Collection(models.Model):
 
 
 class Product(models.Model):
+    
     sku = models.CharField(max_length=10, primary_key=True)
-    slug = models.SlugField()
+    # slug for the URL : to add more info in the URL for SEO
+    slug = models.SlugField(),
     title = models.CharField(max_length=100)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
