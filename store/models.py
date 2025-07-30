@@ -24,6 +24,7 @@ class Product(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
 
+    # relation many to many (product - promotion)
     promotions = models.ManyToManyField(Promotion) # , related_name='products')
 
     def __str__(self):
@@ -62,6 +63,7 @@ class Order(models.Model):
     placed_at = models.DateTimeField(auto_now_add=True)
     payment_status = models.CharField(max_length=20, choices=PAYMENT_STATUS_CHOICES, default='P')
 
+    # relation one to many (order - customer)
     customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
 
 
@@ -77,6 +79,7 @@ class OrderItem(models.Model):
 class Adress(models.Model):
     street = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
+    # relation one to one (customer - address)
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE, primary_key=True)
 
 class Cart(models.Model):
